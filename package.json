@@ -1,0 +1,42 @@
+{
+  "name": "bigquery-geo-router",
+  "version": "2020.4.24",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christippett/bigquery-geo-router"
+  },
+  "license": "MIT",
+  "scripts": {
+    "watch": "tsc -w -p .",
+    "debug": "nodemon --legacy-watch --watch ./dist --inspect=0.0.0.0:5858 --nolazy ./dist/index.js",
+    "http": "node ./dist/http.js",
+    "start": "node ./dist/index.js",
+    "compile": "tsc -p .",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "@types/geojson": "^7946.0.7",
+    "@types/node": "^11.13.8",
+    "@types/osrm": "^5.12.0",
+    "@types/through2": "^2.0.34",
+    "@types/uuid": "^3.4.4",
+    "gts": "^1.1.2",
+    "nodemon": "^1.18.11",
+    "prettier": "1.17.0",
+    "typescript": "~3.4.0"
+  },
+  "main": "./dist/index.js",
+  "dependencies": {
+    "@google-cloud/bigquery": "^3.0.0",
+    "@mapbox/polyline": "^1.0.0",
+    "express": "^4.16.4",
+    "format-number": "^3.0.0",
+    "moment": "^2.24.0",
+    "osrm": "5.22.0",
+    "through2": "^3.0.1",
+    "uuid": "^3.3.2"
+  }
+}

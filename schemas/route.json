@@ -1,0 +1,197 @@
+[
+  {
+    "mode": "NULLABLE",
+    "name": "id",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "distance",
+    "type": "FLOAT"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "duration",
+    "type": "FLOAT"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "weight",
+    "type": "FLOAT"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "weight_name",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "geometry",
+    "type": "GEOGRAPHY"
+  },
+  {
+    "fields": [
+      {
+        "mode": "NULLABLE",
+        "name": "distance",
+        "type": "FLOAT"
+      },
+      {
+        "fields": [
+          {
+            "mode": "NULLABLE",
+            "name": "ref",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "distance",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "destinations",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "name",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "duration",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "mode",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "geometry",
+            "type": "GEOGRAPHY"
+          },
+          {
+            "fields": [
+              {
+                "mode": "NULLABLE",
+                "name": "type",
+                "type": "STRING"
+              },
+              {
+                "mode": "REPEATED",
+                "name": "location",
+                "type": "FLOAT"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "modifier",
+                "type": "STRING"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "bearing_before",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "bearing_after",
+                "type": "INTEGER"
+              }
+            ],
+            "mode": "NULLABLE",
+            "name": "maneuver",
+            "type": "RECORD"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "weight",
+            "type": "FLOAT"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "driving_side",
+            "type": "STRING"
+          },
+          {
+            "fields": [
+              {
+                "mode": "REPEATED",
+                "name": "location",
+                "type": "FLOAT"
+              },
+              {
+                "fields": [
+                  {
+                    "mode": "REPEATED",
+                    "name": "indications",
+                    "type": "STRING"
+                  },
+                  {
+                    "mode": "NULLABLE",
+                    "name": "valid",
+                    "type": "BOOLEAN"
+                  }
+                ],
+                "mode": "REPEATED",
+                "name": "lanes",
+                "type": "RECORD"
+              },
+              {
+                "mode": "REPEATED",
+                "name": "bearings",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "in",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "REPEATED",
+                "name": "classes",
+                "type": "STRING"
+              },
+              {
+                "mode": "REPEATED",
+                "name": "entry",
+                "type": "BOOLEAN"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "out",
+                "type": "INTEGER"
+              }
+            ],
+            "mode": "REPEATED",
+            "name": "intersections",
+            "type": "RECORD"
+          }
+        ],
+        "mode": "REPEATED",
+        "name": "steps",
+        "type": "RECORD"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "duration",
+        "type": "FLOAT"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "weight",
+        "type": "FLOAT"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "summary",
+        "type": "STRING"
+      }
+    ],
+    "mode": "REPEATED",
+    "name": "legs",
+    "type": "RECORD"
+  }
+]

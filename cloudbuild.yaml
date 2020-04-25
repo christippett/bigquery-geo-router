@@ -1,0 +1,51 @@
+steps:
+
+  - id: Pull latest Docker image
+    name: "gcr.io/cloud-builders/docker"
+    entrypoint: sh
+    args:
+      - -c
+      - docker pull gcr.io/$PROJECT_ID/bq-router:latest || exit 0
+
+  - id: Build Docker image
+    name: "gcr.io/cloud-builders/docker"
+    args:
+      - build
+      - --cache-from=gcr.io/$PROJECT_ID/bq-router:latest
+      - --tag=gcr.io/$PROJECT_ID/bq-router:latest
+      - .
+
+  - id: Push Docker image
+    name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/$PROJECT_ID/bq-router:latest"]
+
+  - id: "Download OSRM data"
+    name: "gcr.io/cloud-builders/gsutil"
+    dir: "data"
+    entrypoint: sh
+    args:
+      - -c
+      - gsutil -m cp ${_BUCKET}/osm/${_OSM_NAME}/* ./
+
+  - id: "Calculate routes"
+    name: "gcr.io/$PROJECT_ID/bq-router:latest"
+    args:
+      - route
+      - ${_INPUT_TABLE} # BigQuery table containing trip data
+
+  - id: "Load routes to BigQuery"
+    name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "sh"
+    args:
+      - scripts/bq-load-helper.sh
+      - --dataset_id=${_DESTINATION_DATASET}
+      - --replace
+      - --source_format=NEWLINE_DELIMITED_JSON
+      - --ignore_unknown_values
+
+timeout: 86400s
+substitutions:
+  _OSM_NAME: "north-america/us/illinois"
+  _BUCKET: "gs://my-bucket-for-storing-routing-data"
+  _DESTINATION_DATASET: "trip_routes"
+  _INPUT_TABLE: "trip_routes.trips"
