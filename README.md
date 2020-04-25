@@ -1,6 +1,6 @@
 # BigQuery Geo Router
 
-Converts long/lat coordinates in BigQuery into routes generated using [OpenStreetMap data](https://www.openstreetmap.org/) and the [Open Source Routing Machine](http://project-osrm.org/).
+Converts a series of long/lat coordinates in BigQuery into routes generated using [OpenStreetMap data](https://www.openstreetmap.org/) and the [Open Source Routing Machine](http://project-osrm.org/).
 
 The resulting data can be loaded back into BigQuery for further analysis - each route is typed appropriately to be used with BigQuery's [geospatial querying functionality](https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions). 
 
@@ -27,9 +27,9 @@ gcloud builds submit \
 
 ### Generating Routes
 
-Once the above step is complete, routes can be calculated by running (another) Cloud Build job. The job builds a Docker container containing a Node.js application that queries BigQuery and runs the routing calculation process. The application saves the routes to a local JSON file that are then be loaded back into BigQuery.
+Once the above step is complete, routes can be calculated by running (another) Cloud Build job. The job builds a Docker container containing a Node.js application that queries BigQuery and runs the routing calculation process. The resulting routes are output to a local JSON file that can subsequently be loaded back into BigQuery.
 
-The input to the ronute calculator can either be a reference to a table in BigQuery (in the format `dataset.table`) or the path to a SQL file.
+The input to the route calculator can either be a reference to a table in BigQuery (in the format `dataset.table`) or the path to a SQL file.
 
 ```bash
 gcloud builds submit \
