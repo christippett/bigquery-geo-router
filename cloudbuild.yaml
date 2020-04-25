@@ -25,7 +25,7 @@ steps:
     entrypoint: sh
     args:
       - -c
-      - gsutil -m cp ${_BUCKET}/osm/${_OSM_NAME}/* ./
+      - gsutil -m cp ${_DATA_BUCKET}/osm/${_OSM_NAME}/* ./
 
   - id: "Calculate routes"
     name: "gcr.io/$PROJECT_ID/bq-router:latest"
@@ -46,6 +46,6 @@ steps:
 timeout: 86400s
 substitutions:
   _OSM_NAME: "north-america/us/illinois"
-  _BUCKET: "gs://my-bucket-for-storing-routing-data"
+  _DATA_BUCKET: "gs://my-bucket-for-storing-routing-data"
   _DESTINATION_DATASET: "trip_routes"
   _INPUT_TABLE: "trip_routes.trips"

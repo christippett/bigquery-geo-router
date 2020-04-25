@@ -24,11 +24,11 @@ steps:
     dir: "data"
 artifacts:
   objects:
-    location: "${_BUCKET}/osm/${_OSM_NAME}/"
+    location: "${_DATA_BUCKET}/osm/${_OSM_NAME}/"
     paths: ["data/*"]
 timeout: 10800s
 substitutions:
-  _BUCKET: "gs://my-bucket-for-storing-routing-data"
+  _DATA_BUCKET: "gs://my-bucket-for-storing-routing-data"
   _OSM_NAME: "north-america/us/illinois"
   _THREADS: "8"
   _PROFILE: "/opt/car.lua"

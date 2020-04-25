@@ -12,17 +12,17 @@ The first step is to download and prepare the OpenStreetMap data for the region 
 
 [Geofabrik](https://download.geofabrik.de/) has a number of regional OpenStreetMap extracts that can be used as our starting point. The included Cloud Build config, `cloudbuild-setup.yaml`, takes care of many the of steps you need to get everything set up.
 
-The two main parameters needed for the Cloud Build job are `_OSM_NAME` and `_BUCKET`.
+The two main parameters needed for the Cloud Build job are `_OSM_NAME` and `_DATA_BUCKET`.
 
 - `_OSM_NAME`: this is the name, including any prefixes, for the OpenStreetMap data file available from Geofabrik (the Cloud Build job is configured to download extracts from this location). The example below is referencing the data for Illinois available [here](https://download.geofabrik.de/north-america/us/illinois.html) (note the URL path and its correlation to `_OSM_NAME`).
-- `_BUCKET`: the name of the Google Cloud Storage bucket where the resulting files will be saved and referenced when calculating routes.
+- `_DATA_BUCKET`: the name of the Google Cloud Storage bucket where the resulting files will be saved and referenced when calculating routes.
 
 
 ```bash
 gcloud builds submit \
     --config cloudbuild-setup.yaml \
     --substitutions=_OSM_NAME=north-america/us/illinois \
-    --substitutions=_BUCKET=gs://my-bucket-for-storing-routing-data
+    --substitutions=_DATA_BUCKET=gs://my-bucket-for-storing-routing-data
 ```
 
 ### Generating Routes
@@ -35,7 +35,7 @@ The input to the route calculator can either be a reference to a table in BigQue
 gcloud builds submit \
     --config cloudbuild.yaml \
     --substitutions=_OSM_NAME=north-america/us/illinois \
-    --substitutions=_BUCKET=gs://my-bucket-for-storing-routing-data
+    --substitutions=_DATA_BUCKET=gs://my-bucket-for-storing-routing-data
     --substitutions=_DESTINATION_DATASET_=trip_routes \
     --substitutions=_INPUT_TABLE=trip_routes.trips
 ```
