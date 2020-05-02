@@ -36,7 +36,7 @@ gcloud builds submit \
     --config cloudbuild.yaml \
     --substitutions=_OSM_NAME=north-america/us/illinois \
     --substitutions=_DATA_BUCKET=gs://my-bucket-for-storing-routing-data
-    --substitutions=_DESTINATION_DATASET_=trip_routes \
+    --substitutions=_DESTINATION_DATASET=trip_routes \
     --substitutions=_INPUT_TABLE=trip_routes.trips
 ```
 
